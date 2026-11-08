@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Watch Notebook</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <div>
+            <h1>My Watch Notebook</h1>
+            <p>My personal collection of movies, series & anime (Since:- 6/8/2024)</p>
+        </div>
+
+        <button class="add-btn" id="addBtn">+ Add</button>
+
+    </header>
+
+
+    <!-- Statistics -->
+    <section class="stats">
+
+        <div class="stat-card">
+            <span class="icon">🎬</span>
+            <h2>Movies</h2>
+            <p id="movieCount">0</p>
+        </div>
+
+        <div class="stat-card">
+            <span class="icon">📺</span>
+            <h2>Series</h2>
+            <p id="seriesCount">0</p>
+        </div>
+
+        <div class="stat-card">
+            <span class="icon">🎌</span>
+            <h2>Animated</h2>
+            <p id="animatedCount">0</p>
+        </div>
+
+    </section>
+
+    <!-- Add Option-->
+    <section class="add-option" id="addOptions">
+        <h2>What do you want to add?</h2>
+        <div class="add-choices">
+            <button data-type="movie">🎬 Movie</button>
+
+            <button data-type="series">📺 Series</button>
+
+            <button data-type="animated">🎨 Animated</button>
+        </div>
+        
+    </section>
+
+    <!-- Search -->
+<section class="search-section" id="searchSection">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search for a movie or series..."
+    >
+
+    <button id="searchBtn">Search</button>
+
+</section>
+
+    <!-- Serach Result -->
+    <section class="search-result">
+
+        <div id="movieResult"></div>
+
+    </section>
+
+    <!-- Recently Watched -->
+    <section class="recent">
+        <section class="notebook-search">
+            <h2>Search My Notebook</h2>
+            <input
+                type="text"
+                id="notebookSearchInput"
+                placeholder="Search what you've watched..."
+            >
+            <button id="notebookSearchBtn">search</button>
+            <div id="notebookSearchResults"></div>
+        </section>
+
+        <div class="section-title">
+            <h2>Your Notebook</h2>
+
+            <div class="notebook-controls">
+
+                <select id="typeFilter">
+                    <option value="all">All</option>
+                    <option value="movie">Movies</option>
+                    <option value="series">Series</option>
+                    <option value="animated">Animated</option>
+                </select>
+
+                <div class="sort-controls">
+                    <select id="sortSelect">
+                        <option value="recent">Recently Watched</option>
+                        <option value="favorites">Favorites</option>
+                        <option value="ongoing">Ongoing</option>
+                        <option value="completed">Completed</option>
+                    </select>
+
+                    <button id="viewAllBtn">View All</button>
+                </div>
+
+             </div>
+        </div>
+        <div id="recentEntries"></div>
+
+        <!-- Entries will appear here -->
+        <div id="watchList"></div>
+
+        <!-- Empty message -->
+        <div class="empty" id="entriesContainer">
+
+            <div class="empty-icon">🎞️</div>
+
+            <h3>Your notebook is empty</h3>
+
+            <p>
+                Start adding movies, series and anime you've watched.
+            </p>
+
+            <button class="add-btn" id="openForm2">
+                + Add Your First Entry
+            </button>
+
+        </div>
+
+
+    </section>
+    <section id="dialoguesSection">
+
+        <div class="section-header">
+            <h2>📝 Dialogues</h2>
+            <button id="addDialogueBtn">+ Add Dialogue</button>
+        </div>
+
+        <div id="dialogueForm" style="display: none;">
+
+            <textarea
+                id="dialogueText"
+                placeholder="Write a dialogue you liked..."
+            ></textarea>
+
+            <input
+                type="text"
+                id="dialogueTitle"
+                placeholder="Movie / Series title"
+            >
+
+            <button id="saveDialogueBtn">
+                💾 Save Dialogue
+            </button>
+
+        </div>
+
+        <div id="dialoguesContainer"></div>
+        <button id="viewAllDialoguesBtn" style="display: none;">
+            View All Dialogues
+        </button>
+
+    </section>
+
+
+    <!-- Add Entry Form -->
+
+    <div class="form-container" id="formContainer">
+
+        <div class="form-box">
+
+            <h2>Add to Notebook</h2>
+
+            <form id="watchForm">
+
+                <!-- Title -->
+                <label>Title</label>
+                <input
+                    type="text"
+                    id="title"
+                    placeholder="Enter title"
+                    required
+                >
+
+
+                <!-- Type -->
+                <label>Type</label>
+
+                <select id="type" required>
+
+                    <option value="">Select type</option>
+                    <option value="Movie">Movie</option>
+                    <option value="Series">Series</option>
+                    <option value="Anime">Anime</option>
+
+                </select>
+
+
+                <!-- Genre -->
+                <label>Genre</label>
+
+                <input
+                    type="text"
+                    id="genre"
+                    placeholder="e.g. Action, Thriller"
+                >
+
+
+                <!-- Year -->
+                <label>Year</label>
+
+                <input
+                    type="number"
+                    id="year"
+                    placeholder="e.g. 2026"
+                >
+
+
+                <!-- Rating -->
+                <label>Your Rating</label>
+
+                <input
+                    type="number"
+                    id="rating"
+                    placeholder="0 - 10"
+                    min="0"
+                    max="10"
+                    step="0.1"
+                    required
+                >
+
+
+                <!-- Status -->
+                <label>Status</label>
+                <div class="favorite-option">
+                    <label>
+                        <input type="checkbox" id="favorite">
+                        Add to Favorites ❤️
+                    </label>
+                </div>
+
+                <select id="status">
+
+                    <option value="Completed">Completed</option>
+                    <option value="Watching">Watching</option>
+                    <option value="Dropped">Dropped</option>
+
+                </select>
+
+
+                <!-- Review -->
+                <label>Your Thoughts</label>
+
+                <textarea
+                    id="review"
+                    placeholder="Write your thoughts about it..."
+                ></textarea>
+
+
+                <!-- Buttons -->
+
+                <div class="form-buttons">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        id="closeForm"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                    >
+                        Add to Notebook
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="edit-panel" id="editPanel">
+        <h2>Edit Entry</h2>
+
+        <label>⭐ My Rating</label>
+        <input type="number" id="editRating" min="0" max="10" step="0.1">
+
+        <label>
+            ❤️ Favorite
+            <input type="checkbox" id="editFavorite">
+        </label>
+
+        <div id="editSeriesFields">
+            <label>📌 Status</label>
+            <select id="editStatus">
+                <option value="ongoing">Ongoing</option>
+                <option value="completed">Completed</option>
+            </select>
+
+            <label>📚 Seasons Watched</label>
+            <input type="number" id="editSeasons" min="0">
+        </div>
+
+        <button id="updateEntry">💾 Update Entry</button>
+        <button id="cancelEdit">Cancel</button>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
